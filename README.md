@@ -28,11 +28,11 @@ TCPDUMP has a basic format for filters. It consists of the following:
 **\<protocol header\>\[offset\:length\] \<relation\> \<value\>**
 
 Examples of these are:
-- protocol (ICMP)
+- protocol (ICMP). If offset 9 (protocol) in the IP header is equal to 0x01. 
   <pre><code>ip[9] = 0x01</code></pre>
-- Destination Port
+- Destination Port (If the 2 bytes at offset 2 in the TCP header do not equal 80)
   <pre><code>tcp[2:2] != 80</code></pre>
-- Length (minimum value of 8)
+- Length (UDP packet is a minimum value of 8 which is the header). If the 2 bytes at offset 4 in the UDP header are greater than zero.
   <pre><code>udp[4:2] > 0</code></pre>
 - ICMP Host Unreachable (Type 3 Code 1)
   <pre><code>icmp[0] = 0x03 && icmp[1] = 0x01</code></pre>
